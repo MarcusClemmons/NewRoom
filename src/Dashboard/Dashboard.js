@@ -12,7 +12,7 @@ function Dashboard() {
   });
   const [bookmarks, setBookmarks] = useState([]);
   const [history, setHistory] = useState([]);
-
+  const { changeTheme } = useGlobalContext();
 
 
   const fetchPreferences = useCallback(async () => {
@@ -45,18 +45,18 @@ function Dashboard() {
     }
   }, [user, fetchPreferences, fetchBookmarks, fetchHistory]);
 
-  const updatePreferences = async (newPreferences) => {
-    const prefsUrl = `https://newroom-1a460-default-rtdb.firebaseio.com/users/${user.id}/preferences.json`;
-    await fetch(prefsUrl, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPreferences),
-    });
-    setPreferences(newPreferences);
-  };
+  // const updatePreferences = async (newPreferences) => {
+  //   const prefsUrl = `https://newroom-1a460-default-rtdb.firebaseio.com/users/${user.id}/preferences.json`;
+  //   await fetch(prefsUrl, {
+  //     method: "PUT",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(newPreferences),
+  //   });
+  //   setPreferences(newPreferences);
+  // };
 
   const handleThemeChange = (newTheme) => {
-    updatePreferences({ ...preferences, theme: newTheme });
+    changeTheme(newTheme); // Update theme in context and Firebase
   };
 
 

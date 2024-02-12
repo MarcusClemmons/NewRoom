@@ -83,10 +83,20 @@ export const GlobalProvider = ({ children }) => {
         // handle navigation in your component after calling logout
     };
 
-    const changeTheme = (newTheme) => {
-        console.log("I am from Context")
+
+    const changeTheme = async (newTheme) => {
         setTheme(newTheme);
-        // Optional: Update theme in user's preferences in Firebase
+      
+        if (!user) return; // Ensure user is logged in
+      
+        const themeUrl = `https://newroom-1a460-default-rtdb.firebaseio.com/users/${user.id}/preferences/theme.json`;
+        await fetch(themeUrl, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newTheme),
+        });
+      
+        // Optional: Update local state or context state if needed
       };
       
 

@@ -8,6 +8,19 @@
   pointer-events: none;
 }
 
+/* Inside App.css */
+
+.light-theme {
+  background-color: #fff; /* Light background */
+  color: #000; /* Dark text */
+}
+
+.dark-theme {
+  background-color: #000; /* Dark background */
+  color: #fff; /* Light text */
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
